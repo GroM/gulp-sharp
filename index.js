@@ -38,27 +38,7 @@ var getRotate = function( val ){
 
 var createSharpPipeline = function( opts ) {
   // create pipeline manually to preserve consistency
-  var pipeline = [
-    (opts.resize) ? ['resize', opts.resize] : undefined,
-    (opts.withoutEnlargement) ? ['withoutEnlargement', undefined] : undefined,
-    (opts.max) ? ['max', undefined] : undefined,
-    (opts.crop) ? ['crop', sharp.gravity[opts.crop] ] : undefined,
-    (opts.interpolateWith) ? ['interpolateWith', sharp.interpolator[opts.interpolateWith] ] : undefined,
-    (opts.embedWhite) ? ['embedWhite', undefined] : undefined,
-    (opts.embedBlack) ? ['embedBlack', undefined] : undefined,
-
-    // rotate is special case, the value will be get with getRotate() function
-    // because short-circuiting possible value 0 with undefined (which is get from EXIF) is impossible
-    (getRotate(opts.rotate)) ? getRotate(opts.rotate) : undefined,
-    (opts.extract) ? ['extract', [opts.extract.topOffset, opts.extract.leftOffset, opts.extract.width, opts.extract.height]] : undefined,
-    (opts.sharpen) ? ['sharpen', undefined ] : undefined,
-    (opts.gamma) ? ['gamma', opts.gamma ] : undefined,
-    (opts.grayscale) ? ['grayscale', undefined] : undefined,
-    (opts.withMetadata) ? ['withMetadata', undefined] : undefined,
-    (opts.quality) ? ['quality', opts.quality] : undefined,
-    (opts.progressive) ? ['progressive', undefined] : undefined,
-    (opts.compressionLevel) ? ['compressionLevel', opts.compressionLevel] : undefined
-  ];
+  var pipeline = opts.entries();
 
   // remove task that is undefined
   pipeline = _.compact(pipeline);
@@ -102,23 +82,7 @@ var gulpSharp = function( options ) {
   }
 
   // default options
-  var DEFAULT = {
-    crop : '', // Possible values are north, east, south, west, center.
-    max : false, //false will be ignored
-    embedWhite : false, //false will be ignored
-    embedBlack : false, //false will be ignored
-    rotate : false, //false will be ignored. true will use value from EXIF Orientation tag. Or a number 0, 90, 180 or 270
-    withoutEnlargement : true,
-    sharpen : false,
-    interpolateWith : '', // [nearest, bilinear, bicubic, vertexSplitQuadraticBasisSpline, locallyBoundedBicubic, nohalo]
-    gamma : false, // if present, is a Number betweem 1 and 3. The default value is 2.2, a suitable approximation for sRGB images.
-    grayscale : false,
-    output : '', // string of extension without dot ('.'). either ["jpeg", "png", "webp"]
-    quality : false, // only applies JPEG, WebP and TIFF
-    progressive : false,
-    withMetadata : false,
-    compressionLevel : false // only apply to png
-  };
+  var DEFAULT = {};
 
   var mergedOptions = _.merge(DEFAULT, options);
   var pipeline = createSharpPipeline(mergedOptions);
