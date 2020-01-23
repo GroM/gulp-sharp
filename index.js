@@ -47,7 +47,6 @@ var createSharpPipeline = function( opts ) {
   for (var exec in opts) {
     pipeline.push([exec, opts[exec]]);
   }
-  console.log(pipeline)
 
   // remove task that is undefined
   pipeline = _.compact(pipeline);
