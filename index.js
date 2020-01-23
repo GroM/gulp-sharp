@@ -18,6 +18,11 @@ var execute = function ( obj, task ) {
 
   var methodName = task[0];
   var passedValue = task[1];
+  
+  if (!obj[ methodName ]) {
+    console.error(`No sharp method '${methodName}' found`)
+    return obj;
+  }
 
   if (_.isArray(passedValue)) {
     return obj[ methodName ].apply(this, passedValue); // `this` will be binded later at runtime
@@ -38,7 +43,11 @@ var getRotate = function( val ){
 
 var createSharpPipeline = function( opts ) {
   // create pipeline manually to preserve consistency
-  var pipeline = opts.entries();
+  var pipeline = [];
+  for (var exec in opts) {
+    pipeline.push([exec, opts[exec]]);
+  }
+  console.log(pipeline)
 
   // remove task that is undefined
   pipeline = _.compact(pipeline);
