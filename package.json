@@ -1,6 +1,6 @@
 {
   "name": "gulp-sharp",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Gulp plugin to resize image using sharp (libvips binding for nodejs)",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/rizalp/gulp-sharp.git"
+    "url": "https://github.com/dionysiusmarquis/gulp-sharp.git"
   },
   "keywords": [
     "gulp",
@@ -33,16 +33,18 @@
   "author": "Mohammad Shahrizal Prabowo",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/rizalp/gulp-sharp/issues"
+    "url": "https://github.com/dionysiusmarquis/gulp-sharp/issues"
   },
-  "homepage": "https://github.com/rizalp/gulp-sharp",
+  "homepage": "https://github.com/dionysiusmarquis/gulp-sharp",
   "engines": {
     "node": ">=0.10"
   },
   "dependencies": {
     "event-stream": "^3.3.*",
     "gulp-util": "^3.0.*",
-    "lodash": "^3.9.*",
-    "sharp": "^0.20.*"
+    "lodash": "^4.17.*"
+  },
+  "peerDependencies": {
+    "sharp": "0.x"
   }
 }
