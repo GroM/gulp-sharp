@@ -46,6 +46,6 @@
     "vinyl": "^2.2.0"
   },
   "peerDependencies": {
-    "sharp": "0.x"
+    "sharp": "^0.24"
   }
 }
