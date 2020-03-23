@@ -6,7 +6,8 @@ var _ = require('lodash');
 var path = require('path');
 
 // consts
-var PLUGIN_NAME = 'gulp-sharp';
+const PLUGIN_NAME = 'gulp-sharp';
+const PLUGIN_DEBUG = true;
 
 var replaceExt = function (pathStr, ext) {
   return path.join(
@@ -18,7 +19,7 @@ var execute = function ( obj, task ) {
 
   var methodName = task[0];
   var passedValue = task[1];
-  
+
   if (!obj[ methodName ]) {
     console.error(`No sharp method '${methodName}' found`)
     return obj;
@@ -57,7 +58,7 @@ var createSharpPipeline = function( opts ) {
     var input = null;
 
     input = sharp(file.isNull() ? file.path : file.contents, {sequentialRead: true});
-    
+
     var executeInstance = execute.bind(input);
 
     var metadata = await input.metadata()
@@ -104,10 +105,10 @@ var gulpSharp = function( options ) {
 
   var mergedOptions = _.merge(DEFAULT, options);
   var pipeline = createSharpPipeline(mergedOptions);
-
+  if(PLUGIN_DEBUG) console.log(pipeline);
   // creating a stream through which each file will pass
   var stream = es.map(function(file, callback) {
-
+    if(PLUGIN_DEBUG) console.log(file);
     if (file.isStream()) {
       callback(new PluginError(PLUGIN_NAME, 'Streams are not supported.'));
     }
