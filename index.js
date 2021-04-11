@@ -94,8 +94,8 @@ var gulpSharp = function( options ) {
     throw new PluginError(PLUGIN_NAME, 'Missing options object');
   } else if ( ! _.isPlainObject(options) ) {
     throw new PluginError(PLUGIN_NAME, 'options object must be plain object (created with `{}` literal) ');
-  } else if ( options.resize === undefined && options.extract === undefined && options.scale === undefined ) {
-    throw new PluginError(PLUGIN_NAME, 'Please specify an extract, resize or scale property in your options object');
+  } else if ( options.resize === undefined && options.extract === undefined && options.scale === undefined && options.trim === undefined ) {
+    throw new PluginError(PLUGIN_NAME, 'Please specify an extract, resize, scale or trim property in your options object');
   } else if ( options.resize && Array.isArray( options.resize ) === false ) {
     throw new PluginError(PLUGIN_NAME, 'options.resize must be array');
   }
