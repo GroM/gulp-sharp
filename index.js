@@ -7,7 +7,7 @@ var path = require('path');
 
 // consts
 const PLUGIN_NAME = 'gulp-sharp';
-const PLUGIN_DEBUG = true;
+const PLUGIN_DEBUG = false;
 
 var replaceExt = function (pathStr, ext) {
   return path.join(
