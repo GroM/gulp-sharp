@@ -1,6 +1,6 @@
 {
   "name": "gulp-sharp",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Gulp plugin to resize image using sharp (libvips binding for nodejs)",
   "main": "index.js",
   "scripts": {
@@ -46,6 +46,6 @@
     "vinyl": "^2.2.0"
   },
   "peerDependencies": {
-    "sharp": "^0.24.0"
+    "sharp": "^0.28.1"
   }
 }
